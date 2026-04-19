@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const API_URL = 'http://localhost:5000/registrations';
+/* const API_URL = 'http://localhost:5000/registrations'; */
+const API_URL = 'http://YOUR_PUBLIC_IP:5000/registrations';
 
 function App() {
   const [form, setForm] = useState({ name: '', email: '', phone: '' });
