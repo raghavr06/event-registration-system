@@ -24,12 +24,10 @@ app.use('/registrations', registrationRoutes);
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// Serve React build
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// Catch-all route (React routing)
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
 mongoose
