@@ -7,6 +7,7 @@ const registrationRoutes = require('./routes/registrations');
 
 const app = express();
 
+const path = require("path");
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -15,13 +16,21 @@ app.use(express.json());
 app.use('/registrations', registrationRoutes);
 
 // Root health check
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
   res.send('Event Registration API is running.');
-});
+}); */
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
+
+// Serve React build
+app.use(express.static(path.join(__dirname, "build")));
+
+// Catch-all route (React routing)
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 mongoose
   .connect(MONGO_URI)
